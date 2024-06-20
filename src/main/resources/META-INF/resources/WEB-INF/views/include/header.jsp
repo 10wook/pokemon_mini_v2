@@ -15,7 +15,7 @@
 <body>
     <header id="hd" class="page-pokemon">
         <h1>
-            <a href="${pageContext.request.contextPath}/home"><img src="${pageContext.request.contextPath}/images/main_logo.png" alt="pokemon"></a>
+                      <a href="${pageContext.request.contextPath}/home"><img src="${pageContext.request.contextPath}/images/main_logo.png" alt="pokemon"></a>
         </h1>
         <div class="container flex-justify-space">
             <button type="button" class="js-mn no-style" title="메뉴열기/닫기">
@@ -26,42 +26,34 @@
             <nav id="gnb">
                 <ul class="gnb">
                     <li>
-                        <a href="https://www.pokemonkorea.co.kr/news" class="warning">
+                        <a href="${pageContext.request.contextPath}/home" class="warning">
                             <div style="display: flex; flex-direction: column; align-items: center;">
-                                <img src="${pageContext.request.contextPath}/images/icon_news.png" alt="뉴스 아이콘">
-                                <span>소식</span>
+                                <img src="${pageContext.request.contextPath}/images/sub.png" alt="대타출동">
+                                <span>인형</span>
                             </div>
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.pokemonkorea.co.kr/game" class="primary">
+                        <a href="${pageContext.request.contextPath}/home" class="primary">
                             <div style="display: flex; flex-direction: column; align-items: center;">
-                                <img src="${pageContext.request.contextPath}/images/icon_game.png" alt="게임 아이콘">
-                                <span>게임</span>
+                                <img src="${pageContext.request.contextPath}/images/658.png" alt="개굴닌자">
+                                <span>피규어</span>
                             </div>
                         </a>
                     </li>
                     <li>
-                        <a href="https://pokemoncard.co.kr/" target="_blank" class="secondary">
+                        <a href="${pageContext.request.contextPath}/home" class="secondary">
                             <div style="display: flex; flex-direction: column; align-items: center;">
-                                <img src="${pageContext.request.contextPath}/images/icon_card.png" alt="카드 게임 아이콘">
-                                <span>카드 게임</span>
+                                <img src="${pageContext.request.contextPath}/images/Bag_Choice_Specs_Sprite.png" alt="구애안경">
+                                <span>악세사리</span>
                             </div>
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.pokemonkorea.co.kr/animation" class="secondary2">
-                            <div style="display: flex; flex-direction: column; align-items: center;">
-                                <img src="${pageContext.request.contextPath}/images/icon_ani.png" alt="애니메이션 아이콘">
-                                <span>애니메이션</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.pokemonkorea.co.kr/goods" class="danger">
+                        <a href="${pageContext.request.contextPath}/home" class="danger">
                             <div style="display: flex; flex-direction: column; align-items: center;">
                                 <img src="${pageContext.request.contextPath}/images/icon_ball.png" alt="상품 아이콘">
-                                <span>상품</span>
+                                <span>전체상품</span>
                             </div>
                         </a>
                     </li>
@@ -93,7 +85,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="https://www.pokemonkorea.co.kr/member/login?next=/">
+                    <a href="${pageContext.request.contextPath}/login">
                         <div style="display: flex; flex-direction: column; align-items: center;">
                             <img src="${pageContext.request.contextPath}/images/icon_login.png" alt="로그인 아이콘">
                             <span>로그인</span>
