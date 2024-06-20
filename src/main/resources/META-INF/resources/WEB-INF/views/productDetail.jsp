@@ -17,7 +17,30 @@
 <body>
     <%@ include file="/WEB-INF/views/include/header.jsp" %>
     <div class="container detail-container">
-        <%@ include file="/WEB-INF/views/include/productDetail.jsp" %>
+        <table id="goodsTable" class="card">
+            <thead>
+                <tr>
+                    <th>상품 코드</th>
+                    <th>카테고리</th>
+                    <th>상품명</th>
+                    <th>상세 내용</th>
+                    <th>가격</th>
+                    <th>이미지</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="goodss" items="${goodsList}">
+                    <tr>
+                        <td>${goods.id}</td>
+                        <td>${goods.category}</td>
+                        <td>${goods.name}</td>
+                        <td>${goods.description}</td>
+                        <td>${goods.price}</td>
+                        <td><img src="${goods.imageUrl}" alt="상품 이미지" style="max-width: 100px;"></td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
     </div>
     <script>
         window.addEventListener('load', function() {
