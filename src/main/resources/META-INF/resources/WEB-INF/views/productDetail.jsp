@@ -22,7 +22,7 @@
     <script>
         window.addEventListener('load', function() {
             var headerHeight = document.querySelector('header').offsetHeight;
-            document.querySelector('.detail-container').style.paddingTop = headerHeight + 'px';
+            document.querySelector('.detail-container').style.paddingTop = headerHeight+30 + 'px';
         });
     </script>
 </body>
