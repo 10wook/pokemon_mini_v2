@@ -11,28 +11,15 @@
 </head>
 <body>
     <%@ include file="/WEB-INF/views/include/header.jsp" %>
-    <div class="container mt-5">
-        <h1>상품 상세 정보</h1>
-        <div class="card">
-            <div class="card-header">
-                <h3>${productDetail.name}</h3>
-            </div>
-            <div class="card-body">
-                <p><strong>카테고리:</strong> ${productDetail.category}</p>
-                <p><strong>상세 내용:</strong> ${productDetail.description}</p>
-                <p><strong>가격:</strong> ${productDetail.price} 원</p>
-                <c:if test="${not empty productDetail.imageUrl}">
-                    <img src="${productDetail.imageUrl}" alt="${productDetail.name}" class="img-fluid">
-                </c:if>
-            </div>
-        </div>
-    </div>
+       <div class="container detail-container">
+    <%@ include file="/WEB-INF/views/include/productDetail.jsp" %>
+
 
    
     <script>
         window.addEventListener('load', function() {
             var headerHeight = document.querySelector('header').offsetHeight;
-            document.querySelector('.detail-container').style.paddingTop = headerHeight+30 + 'px';
+            document.querySelector('.detail-container').style.paddingTop = headerHeight+80 + 'px';
         });
     </script>
 
