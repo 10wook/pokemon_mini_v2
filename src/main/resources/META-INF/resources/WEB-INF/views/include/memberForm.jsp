@@ -13,8 +13,8 @@
             <h2 class="text-center mb-4">회원가입</h2>
             <form method="post" action="${pageContext.request.contextPath}/signup">
                 <div class="form-group">
-                    <label for="username">아이디</label>
-                    <input type="text" class="form-control" name="username" id="username" placeholder="아이디" required>
+                    <label for="userid">아이디</label>
+                    <input type="text" class="form-control" name="userid" id="userid" placeholder="아이디" required>
                 </div>
                 <div class="form-group">
                     <label for="password">비밀번호</label>
@@ -27,10 +27,6 @@
                 <div class="form-group">
                     <label for="email">이메일</label>
                     <input type="email" class="form-control" name="email" id="email" placeholder="이메일" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">전화번호</label>
-                    <input type="text" class="form-control" name="phone" id="phone" placeholder="전화번호" required>
                 </div>
                 <div class="form-group">
                     <label for="address">주소</label>
