@@ -36,7 +36,7 @@ public class LoginController {
 	@GetMapping(value={"/login_success"})
 	public String showlogin_successPage() {
 		logger.info("logger:showlogin_successPage");
-		return "redirect:home";
+		return "/home2";
 	}
 
 	@PostMapping("/auth")
