@@ -1,5 +1,7 @@
 package com.exam.mapper;
 
+import javax.validation.Valid;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.exam.dto.Member;
@@ -7,6 +9,7 @@ import com.exam.dto.Member;
 @Mapper
 public interface MemberMapper {
 
-	public int save(Member mem);
-	public Member findById(String userid);
+	Member findByUsername(String userid);
+	void insertMember(Member member);
+	Member registerNewMember(@Valid Member member);
 }
