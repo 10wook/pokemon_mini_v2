@@ -87,30 +87,8 @@
     function orderNow() {
         var quantity = document.getElementById("quantity").value;
         var productId = "${productDetail.id}";
-        var form = document.createElement("form");
-        form.method = "POST";
-        form.action = "${pageContext.request.contextPath}/order";
-
-        var quantityInput = document.createElement("input");
-        quantityInput.type = "hidden";
-        quantityInput.name = "quantity";
-        quantityInput.value = quantity;
-        form.appendChild(quantityInput);
-
-        var productIdInput = document.createElement("input");
-        productIdInput.type = "hidden";
-        productIdInput.name = "productId";
-        productIdInput.value = productId;
-        form.appendChild(productIdInput);
-
-        document.body.appendChild(form);
-        form.submit();
-    }
-
-    function addToCart() {
-        var quantity = document.getElementById("quantity").value;
-        var productId = "${productDetail.id}";
         var imageUrl = "${productDetail.imageUrl}";
+        var price = "${productDetail.price}";
 
         var cart = getCookie("cart");
         if (cart) {
@@ -124,13 +102,46 @@
             if (cart[i].productId == productId) {
                 cart[i].quantity = parseInt(cart[i].quantity) + parseInt(quantity);
                 cart[i].imageUrl = imageUrl; // Ensure imageUrl is updated
+                cart[i].price = price; // Ensure price is updated
                 productExists = true;
                 break;
             }
         }
 
         if (!productExists) {
-            cart.push({ productId: productId, quantity: quantity, imageUrl: imageUrl });
+            cart.push({ productId: productId, quantity: quantity, imageUrl: imageUrl, price: price });
+        }
+
+        setCookie("cart", JSON.stringify(cart), 7);
+        window.location.href = "${pageContext.request.contextPath}/order";
+    }
+
+    function addToCart() {
+        var quantity = document.getElementById("quantity").value;
+        var productId = "${productDetail.id}";
+        var imageUrl = "${productDetail.imageUrl}";
+        var price = "${productDetail.price}";
+
+        var cart = getCookie("cart");
+        if (cart) {
+            cart = JSON.parse(cart);
+        } else {
+            cart = [];
+        }
+
+        var productExists = false;
+        for (var i = 0; i < cart.length; i++) {
+            if (cart[i].productId == productId) {
+                cart[i].quantity = parseInt(cart[i].quantity) + parseInt(quantity);
+                cart[i].imageUrl = imageUrl; // Ensure imageUrl is updated
+                cart[i].price = price; // Ensure price is updated
+                productExists = true;
+                break;
+            }
+        }
+
+        if (!productExists) {
+            cart.push({ productId: productId, quantity: quantity, imageUrl: imageUrl, price: price });
         }
 
         setCookie("cart", JSON.stringify(cart), 7);

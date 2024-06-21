@@ -29,15 +29,21 @@
                     <th>이미지</th>
                     <th>수량</th>
                     <th>수정</th>
+                    <th>가격</th>
                 </tr>
             </thead>
             <tbody id="cartContents">
             
             </tbody>
-            
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="text-right"><strong>총합 가격:</strong></td>
+                    <td id="totalPrice"></td>
+                </tr>
+            </tfoot>
         </table>
        
-        <a href="${pageContext.request.contextPath}/order" class="btn btn-primary">결제하기</a>
+        <a href="${pageContext.request.contextPath}/order" class="btn btn-primary">주문하기</a>
     </div>
 
     <script>
@@ -70,6 +76,7 @@
             if (cart) {
                 cart = JSON.parse(cart);
                 var cartContents = document.getElementById("cartContents");
+                var totalPrice = 0;
                 cartContents.innerHTML = "";
                 cart.forEach(function(item) {
                     var row = document.createElement("tr");
@@ -100,14 +107,23 @@
                     cell4.appendChild(decreaseButton);
                     cell4.appendChild(increaseButton);
 
+                    var cell5 = document.createElement("td");
+                    var price = item.price * item.quantity;
+                    cell5.textContent = price + " 원";
+
+                    totalPrice += price;
+
                     row.appendChild(cell1);
                     row.appendChild(cell2);
                     row.appendChild(cell3);
                     row.appendChild(cell4);
+                    row.appendChild(cell5);
                     cartContents.appendChild(row);
                 });
+                document.getElementById("totalPrice").textContent = totalPrice + " 원";
             } else {
-                document.getElementById("cartContents").innerHTML = "<tr><td colspan='4'>장바구니가 비었습니다.</td></tr>";
+                document.getElementById("cartContents").innerHTML = "<tr><td colspan='5'>장바구니가 비었습니다.</td></tr>";
+                document.getElementById("totalPrice").textContent = "0 원";
             }
         }
 
