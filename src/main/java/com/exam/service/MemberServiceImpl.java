@@ -19,12 +19,11 @@ public class MemberServiceImpl
            implements MemberService{
 
 	MemberMapper memberMapper;
-	
-	 @Autowired
+	  @Autowired
 	    public MemberServiceImpl(MemberMapper memberMapper) {
 	        this.memberMapper = memberMapper;
+	   
 	    }
-
 	    @Override
 	    public Member findByUsername(String userid) {
 	        return memberMapper.findByUsername(userid);
@@ -35,19 +34,25 @@ public class MemberServiceImpl
 	        memberMapper.insertMember(member);
 	    }
 
-		@Override
-		public Member registerNewMember(@Valid Member member) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-	    
+	    @Override
+	    public Member registerNewMember(Member member) {
+	        if (memberMapper.findByUsername(member.getUserid()) != null) {
+	            throw new RuntimeException("Username already exists");
+	        }
+
+	        if (!member.getPassword().equals(member.getConfirmPassword())) {
+	            throw new RuntimeException("Passwords do not match");
+	        }
+	        memberMapper.insertMember(member);
+	        return member;
+	        
+	    }
 		 @PostMapping("/signup")
 		    public String registerMember(@Valid @ModelAttribute("Member") Member member,
 		                                 BindingResult bindingResult, Model model) {
 		        if (bindingResult.hasErrors()) {
 		            return "memberForm";
 		        }
-
 		        try {
 		            Member registered = memberMapper.registerNewMember(member);
 		            model.addAttribute("registeredMember", registered);

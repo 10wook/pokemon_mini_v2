@@ -7,20 +7,15 @@
 
 
  
- <resultMap id="MemberResultMap" type="com.exam.entity.Member">
-        <id property="userid" column="userid" />
-        <result property="password" column="password" />
-        <result property="email" column="email" />
-        <result property="address" column="address" />
-    </resultMap>
 
-    <select id="findByUsername" parameterType="String" resultMap="MemberResultMap">
+
+    <select id="findByUsername" parameterType="String" resultType="Member">
         SELECT * FROM Member WHERE userid = #{userid}
     </select>
 
     <insert id="insertMember" parameterType="com.exam.entity.Member">
-        INSERT INTO Member (userid, password, email, address)
-        VALUES (#{userid}, #{password}, #{email}, #{address})
+        INSERT INTO Member (userid, password, confirmPassword, email, address)
+        VALUES (#{userid}, #{password}, #{confirmPassword}, #{email}, #{address})
     </insert>
 </mapper>
 

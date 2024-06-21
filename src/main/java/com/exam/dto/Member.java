@@ -1,17 +1,30 @@
 package com.exam.dto;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import org.apache.ibatis.type.Alias;
 
 @Alias("Member")
 public class Member {
-	String userid;
-	String password;
-	String confirmPassword;
-	String email;
-	String address;
+	  @NotEmpty(message = "아이디는 필수 입력 값입니다.")
+	    private String userid;
+
+	    @NotEmpty(message = "비밀번호는 필수 입력 값입니다.")
+	    private String password;
+
+	    @NotEmpty(message = "비밀번호 확인은 필수 입력 값입니다.")
+	    private String confirmPassword;
+
+	    @Email(message = "올바른 이메일 형식이 아닙니다.")
+	    @NotEmpty(message = "이메일은 필수 입력 값입니다.")
+	    private String email;
+
+	    @NotEmpty(message = "주소는 필수 입력 값입니다.")
+	    private String address;
+	    
 	public Member(String userid, String password, String confirmPassword, String email, String address) {
 		super();
 		this.userid = userid;
@@ -53,6 +66,11 @@ public class Member {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	@Override
+	public String toString() {
+		return "Member [userid=" + userid + ", password=" + password + ", confirmPassword=" + confirmPassword
+				+ ", email=" + email + ", address=" + address + "]";
 	}
 
 

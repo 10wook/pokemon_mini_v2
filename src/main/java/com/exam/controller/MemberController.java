@@ -43,14 +43,15 @@ public class MemberController {
     }
 
     @PostMapping("/signup")
-    public String registerMember(@Valid @ModelAttribute("Member") Member  Member,
+    public String registerMember(@Valid @ModelAttribute("Member") Member  member,
                                  BindingResult bindingResult, Model model) {
+    	logger.info("logger:registerMember"+member);
         if (bindingResult.hasErrors()) {
             return "memberForm";
         }
 
         try {
-            Member registered = memberService.registerNewMember(Member);
+            Member registered = memberService.registerNewMember(member);
             model.addAttribute("registeredMember", registered);
             return "redirect:/login";
         } catch (Exception e) {
