@@ -6,14 +6,16 @@
 <mapper namespace="com.exam.mapper.MemberMapper">
 
 
- 
+  <select id="findByUserIdAndPassword" parameterType="java.util.Map" resultType="Member">
+        SELECT * FROM member WHERE userid = #{userid} AND password = #{password}
+    </select>
 
 
     <select id="findByUsername" parameterType="String" resultType="Member">
         SELECT * FROM Member WHERE userid = #{userid}
     </select>
 
-    <insert id="insertMember" parameterType="com.exam.entity.Member">
+    <insert id="insertMember" parameterType="Member">
         INSERT INTO Member (userid, password, confirmPassword, email, address)
         VALUES (#{userid}, #{password}, #{confirmPassword}, #{email}, #{address})
     </insert>

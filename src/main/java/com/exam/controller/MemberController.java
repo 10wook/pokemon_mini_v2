@@ -30,7 +30,6 @@ public class MemberController {
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	
 	MemberService memberService;
-	
 	@Autowired
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
@@ -47,17 +46,25 @@ public class MemberController {
                                  BindingResult bindingResult, Model model) {
     	logger.info("logger:registerMember"+member);
         if (bindingResult.hasErrors()) {
+        	logger.info("logger:registerMember1"+bindingResult.getFieldError());
             return "memberForm";
         }
-
+        String encptPw = 
+				new BCryptPasswordEncoder().encode(member.getPassword());
+		member.setPassword(encptPw);
+//		int n = memberService.saveMember(member);
         try {
             Member registered = memberService.registerNewMember(member);
             model.addAttribute("registeredMember", registered);
-            return "redirect:/login";
+            logger.info("logger:registerMember2"+member);
+            return "redirect:login";
         } catch (Exception e) {
+        	e.printStackTrace();
+        	logger.info("logger:registerMember3"+member);
             model.addAttribute("signupError", e.getMessage());
             return "memberForm";
         }
+    
     }
 }
 

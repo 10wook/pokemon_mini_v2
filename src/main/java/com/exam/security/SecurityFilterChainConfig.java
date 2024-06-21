@@ -61,19 +61,31 @@ public class SecurityFilterChainConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         
-        // 모든 요청을 허용 (보안을 해제)
-        http.authorizeRequests()
-            .anyRequest().permitAll();
-
-        // CSRF 비활성화 (테스트 목적으로)
-        http.csrf().disable();
-        
-        // formLogin 비활성화
-        http.formLogin().disable();
-
-        // 로그아웃 설정 비활성화
-        http.logout().disable();
-        
-        return http.build();
-    }
+    	//1. 불필요한 인증제거
+    			http.authorizeRequests()
+    			    .antMatchers("/login","/home","/signup","/webjars/**","/images/**","/css/**").permitAll()
+    			    .anyRequest()
+    			    .authenticated();
+    			
+    			//2. 로그인 관련 작업
+    			http.csrf().disable();
+    			
+    			http.formLogin()     // 사용자가 만든 로그인화면으로 인증처리 하겠음.
+    			    .loginPage("/login") // 로그인 페이지로 갈수 있는 요청맵핑값 <a href="login">로그인
+    			    .loginProcessingUrl("/auth") // <form  action="auth"  method="post"
+    			    .usernameParameter("userid")    // <input name="userid">
+    			    .passwordParameter("password")       // <input name="passwd">
+    			    .failureForwardUrl("/login_fail")        // 로그인 실패시 리다이렉트되는 요청맵핑값
+//    			    .successForwardUrl("/login_success");    // post 지원안됨.    
+    			    .defaultSuccessUrl("/login_success", true); // 로그인 성공시 리다이렉트되는 요청맵핑값
+    		     //3. csrf 비활성화
+    			
+    			
+    			 //4. 로그아웃 관련 작업
+    			 http.logout()
+    			     .logoutUrl("/logout")   // security가 자동으로 로그아웃 처리해주는 요청맵핑값
+    			     .logoutSuccessUrl("/home");  // logout 성공시 리다이렉트 되는 요청맵핑값
+    			     
+    			return http.build();
+    		}
 }
