@@ -5,7 +5,7 @@
   
 <mapper namespace="com.exam.mapper.ProductDetailMapper">
 
-    <resultMap id="productDetailResultMap" type="ProductDetail">
+    <resultMap id="productDetailResultMap" type="com.exam.dto.ProductDetail">
         <id property="id" column="id"/>
         <result property="category" column="category"/>
         <result property="name" column="name"/>
@@ -14,10 +14,15 @@
         <result property="imageUrl" column="imageUrl"/>
     </resultMap>
 
-    <select id="getProductById" parameterType="int" resultType="ProductDetail">
+    <select id="getProductById" parameterType="int" resultMap="productDetailResultMap">
         SELECT * FROM ProductDetail WHERE id = #{id}
     </select>
 
+    <select id="getAllProducts" resultMap="productDetailResultMap">
+        SELECT * FROM ProductDetail
+    </select>
+
+    <select id="searchProducts" parameterType="String" resultMap="productDetailResultMap">
+        SELECT * FROM ProductDetail WHERE name LIKE CONCAT('%', #{query}, '%')
+    </select>
 </mapper>
-
-

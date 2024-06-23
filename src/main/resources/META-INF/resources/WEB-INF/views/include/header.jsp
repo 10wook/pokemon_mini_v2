@@ -15,7 +15,7 @@
 <body>
     <header id="hd" class="page-pokemon">
         <h1>
-                      <a href="${pageContext.request.contextPath}/home"><img src="${pageContext.request.contextPath}/images/main_logo.png" alt="pokemon"></a>
+            <a href="${pageContext.request.contextPath}/home"><img src="${pageContext.request.contextPath}/images/main_logo.png" alt="pokemon"></a>
         </h1>
         <div class="container flex-justify-space">
             <button type="button" class="js-mn no-style" title="메뉴열기/닫기">
@@ -26,7 +26,7 @@
             <nav id="gnb">
                 <ul class="gnb">
                     <li>
-                        <a href="${pageContext.request.contextPath}/home" class="warning">
+                        <a href="${pageContext.request.contextPath}/home?query=인형" class="warning">
                             <div style="display: flex; flex-direction: column; align-items: center;">
                                 <img src="${pageContext.request.contextPath}/images/sub.png" alt="대타출동">
                                 <span>인형</span>
@@ -34,7 +34,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/home" class="primary">
+                        <a href="${pageContext.request.contextPath}/home?query=피규어" class="primary">
                             <div style="display: flex; flex-direction: column; align-items: center;">
                                 <img src="${pageContext.request.contextPath}/images/658.png" alt="개굴닌자">
                                 <span>피규어</span>
@@ -42,7 +42,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/home" class="secondary">
+                        <a href="${pageContext.request.contextPath}/home?query=배지" class="secondary">
                             <div style="display: flex; flex-direction: column; align-items: center;">
                                 <img src="${pageContext.request.contextPath}/images/Bag_Choice_Specs_Sprite.png" alt="구애안경">
                                 <span>악세사리</span>
@@ -110,8 +110,10 @@
         </a>
         <div id="search" class="collapse">
             <div class="search-wrp">
-                <input type="text" placeholder="검색어를 입력해주세요" name="tsword" id="tsword" onkeypress="if(event.keyCode==13) {totsearch(); return false;}" value="">
-                <button type="button" onclick="totsearch()" class="no-style btn-search"><p class="sr-only">검색</p></button>
+                <form action="${pageContext.request.contextPath}/home" method="get" style="display: flex; align-items: center;">
+                    <input type="text" placeholder="검색어를 입력해주세요" name="query" id="query" onkeypress="if(event.keyCode==13) {this.form.submit(); return false;}" value="">
+                    <button type="submit" class="no-style btn-search"><p class="sr-only">검색</p></button>
+                </form>
                 <button tabindex="button" data-toggle="collapse" data-target="#search" class="no-style btn-close"><p class="sr-only">닫기</p></button>
             </div>
         </div>
