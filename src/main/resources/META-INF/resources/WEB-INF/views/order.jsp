@@ -28,7 +28,7 @@
 <body>
     <%@ include file="/WEB-INF/views/include/header.jsp" %>
     <div class="container order-container">
-        <h1>주문 내역</h1>
+       
         <table class="table">
             <thead>
                 <tr>

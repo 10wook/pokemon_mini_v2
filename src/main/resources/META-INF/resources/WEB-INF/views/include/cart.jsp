@@ -21,7 +21,7 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1>장바구니</h1>
+
         <table class="table">
             <thead>
                 <tr>

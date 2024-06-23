@@ -13,7 +13,7 @@ public class SecurityFilterChainConfig {
         
         // 1. 불필요한 인증제거
         http.authorizeRequests()
-            .antMatchers("/login", "/home", "/signup", "/webjars/**", "/images/**", "/css/**", "/productDetail/**").permitAll() // 여기 수정
+            .antMatchers("/login", "/home", "/signup", "/webjars/**", "/images/**", "/css/**", "/productDetail/**","/cart/**").permitAll() // 여기 수정
             .anyRequest()
             .authenticated();
         
@@ -25,9 +25,9 @@ public class SecurityFilterChainConfig {
             .loginProcessingUrl("/auth") // <form action="auth" method="post">
             .usernameParameter("userid") // <input name="userid">
             .passwordParameter("password") // <input name="passwd">
-            .failureForwardUrl("/login_fail") // 로그인 실패시 리다이렉트되는 요청맵핑값
+            .failureUrl("/login?error=true") // 로그인 실패시 리다이렉트되는 요청맵핑값
 //            .successForwardUrl("/login_success"); // post 지원안됨.    
-            .defaultSuccessUrl("/login_success", true); // 로그인 성공시 리다이렉트되는 요청맵핑값
+            .defaultSuccessUrl("/home", true); // 로그인 성공시 리다이렉트되는 요청맵핑값
         
         // 3. CSRF 비활성화
         http.csrf().disable();

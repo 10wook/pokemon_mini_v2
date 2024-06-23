@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -84,14 +86,28 @@
                         </div>
                     </a>
                 </li>
-                <li>
-                    <a href="${pageContext.request.contextPath}/login">
-                        <div style="display: flex; flex-direction: column; align-items: center;">
-                            <img src="${pageContext.request.contextPath}/images/icon_login.png" alt="로그인 아이콘">
-                            <span>로그인</span>
-                        </div>
-                    </a>
-                </li>
+                <c:choose>
+                    <c:when test="${not empty sessionScope.SPRING_SECURITY_CONTEXT}">
+                        <li>
+                            <a href="${pageContext.request.contextPath}/logout">
+                                <div style="display: flex; flex-direction: column; align-items: center;">
+                                    <img src="${pageContext.request.contextPath}/images/icon_logout.png" alt="로그아웃 아이콘">
+                                    <span>로그아웃</span>
+                                </div>
+                            </a>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li>
+                            <a href="${pageContext.request.contextPath}/login">
+                                <div style="display: flex; flex-direction: column; align-items: center;">
+                                    <img src="${pageContext.request.contextPath}/images/icon_login.png" alt="로그인 아이콘">
+                                    <span>로그인</span>
+                                </div>
+                            </a>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
                 <li>
                     <button type="button" id="tsearchbtn" class="no-style collapsed" data-toggle="collapse" data-target="#search">
                         <div style="display: flex; flex-direction: column; align-items: center;">

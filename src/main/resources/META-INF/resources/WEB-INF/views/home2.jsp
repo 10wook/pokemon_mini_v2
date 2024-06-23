@@ -15,9 +15,9 @@
     </style>
 </head>
 <body>
-    <%@ include file="/WEB-INF/views/include/header2.jsp" %>
+    <%@ include file="/WEB-INF/views/include/header.jsp" %>
     <div class="container product-container">
-        <%@ include file="/WEB-INF/views/include/home2.jsp" %>
+        <%@ include file="/WEB-INF/views/include/home.jsp" %>
     </div>
     <script>
         window.addEventListener('load', function() {
